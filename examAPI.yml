@@ -1,0 +1,74 @@
+openapi: 3.0.3
+info:
+  title: STD24067
+  description: This is a specification of STD24067
+  version: 1.0.0
+servers:
+  - url: "http://localhost:8000"
+paths:
+  /ping:
+    get:
+      responses:
+        200:
+          description: OK
+          content:
+            text/plain:
+              schema:
+                type: string
+                example: pong
+  /cars:
+    post:
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Cars'
+      responses:
+        201:
+          description: Car created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cars'
+    get:
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cars'
+
+  /cars/{id}:
+    get:
+      responses:
+        200:
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Cars'
+    delete:
+      responses:
+        200:
+          description: Car deleted
+  
+  /cars/{id}/characteristics:
+    put:
+
+
+  
+components:
+  schemas:
+    Cars:
+      type: object
+      properties:
+        id:
+          type: string
+        brand:
+          type: string
+        model:
+          type: string
+        characteristics:
+          type: object
